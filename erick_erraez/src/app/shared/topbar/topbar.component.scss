@@ -1,0 +1,24 @@
+.topbar-container {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .topbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .logo-icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+
+  .bank-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #4f5e74;
+  } 
+}

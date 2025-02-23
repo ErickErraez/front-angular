@@ -1,0 +1,99 @@
+<div class="page-background">
+  <div class="top-controls">
+    <div class="search-container">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchText"
+        (input)="applyFilter()"
+      />
+    </div>
+    <button (click)="goToAddProduct()" class="btn-add">Agregar</button>
+  </div>
+
+  <div class="card-container">
+    <ng-container *ngIf="isLoading; else showData">
+      <div class="skeleton-wrapper">
+        <div class="skeleton-item" *ngFor="let i of [1, 2, 3, 4, 5]">
+          <div class="skeleton-logo"></div>
+          <div class="skeleton-text skeleton-text-short"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text skeleton-text-long"></div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-template #showData>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Logo</th>
+              <th>Nombre del producto</th>
+              <th>Descripción</th>
+              <th>Fecha de liberación</th>
+              <th>Fecha de reestructuración</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let product of filteredProducts | slice : 0 : recordsPerPage;
+                let i = index
+              "
+            >
+              <td>
+                <img [src]="product.logo" alt="logo" class="logo-img" />
+              </td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
+              <td>{{ product.date_release | date : "dd/MM/yyyy" }}</td>
+              <td>{{ product.date_revision | date : "dd/MM/yyyy" }}</td>
+              <td>
+                <div class="dropdown">
+                  <button class="dropdown-button" (click)="toggleDropdown(i)">
+                    &#8942;
+                  </button>
+                  <div
+                    class="dropdown-content"
+                    [class.show]="isDropdownOpen[i]"
+                  >
+                    <a (click)="editProduct(product)">Editar</a>
+                    <a (click)="deleteProduct(product, i)">Eliminar</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="footer-container">
+        <span>{{ filteredProducts.length }} Resultados</span>
+        <select #mySelect (change)="onRecordsChange(mySelect.value)">
+          <option value="5" [selected]="recordsPerPage === 5">5</option>
+          <option value="10" [selected]="recordsPerPage === 10">10</option>
+          <option value="20" [selected]="recordsPerPage === 20">20</option>
+        </select>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- Modal -->
+<app-modal
+  *ngIf="showModal"
+  title="¿Estas seguro de eliminar el producto?"
+  [message]="selectedProduct.name"
+  (confirm)="onConfirmDelete()"
+  (cancel)="onCancelDelete()"
+></app-modal>
+
+<div
+  *ngIf="message"
+  class="alert"
+  [ngClass]="isError ? 'alert-danger' : 'alert-success'"
+>
+  {{ message }}
+</div>

@@ -1,0 +1,13 @@
+<!-- modal.component.html -->
+<div class="modal-overlay" *ngIf="title">
+  <div class="modal-content">
+    <p class="modal-question">
+      ¿Estás seguro de eliminar el producto <strong>{{ message }}</strong
+      >?
+    </p>
+    <div class="modal-actions">
+      <button (click)="onCancel()" class="btn-cancel">Cancelar</button>
+      <button (click)="onConfirm()" class="btn-confirm">Confirmar</button>
+    </div>
+  </div>
+</div>

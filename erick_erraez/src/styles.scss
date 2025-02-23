@@ -1,0 +1,167 @@
+/* You can add global styles to this file, and also import other style files */
+// En styles.scss
+.table-container {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+
+  table {
+    width: 100%;
+    min-height: 150px;
+    border-collapse: collapse;
+
+    thead {
+      background-color: #f0f4f9;
+      th {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: #333;
+        white-space: nowrap;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #e2e2e2;
+        &:hover {
+          background-color: #f9f9f9;
+        }
+        td {
+          padding: 0.75rem 1rem;
+          white-space: nowrap;
+        }
+        .logo-img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}
+
+/* modal.component.scss */
+
+/* Fondo semitransparente para oscurecer la página */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Caja blanca centrada con sombra y borde redondeado */
+.modal-content {
+  background-color: #fff;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  width: 350px;
+  max-width: 90%; /* Para que sea responsive en pantallas pequeñas */
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(43, 23, 23, 0.1);
+}
+
+/* Texto principal de la pregunta */
+.modal-question {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: black;
+  line-height: 1.4;
+  height: 80px;
+}
+
+/* Contenedor de los botones */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Estilo para el botón "Cancelar" */
+.btn-cancel {
+  background-color: #f0f4f9;
+  color: #0f265c;
+  border: none;
+  border-radius: 4px;
+  padding: 0.85rem 3.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Estilo para el botón "Confirmar" */
+.btn-confirm {
+  background-color: #f8d330;
+  color: #0f265c;
+  border: none;
+  border-radius: 4px;
+  padding: 0.85rem 3.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Efecto hover opcional en botones */
+.btn-cancel:hover {
+  background-color: #e2e8ef;
+}
+.btn-confirm:hover {
+  filter: brightness(0.95);
+}
+
+/* Ajustes responsive opcionales */
+@media (max-width: 500px) {
+  .modal-content {
+    padding: 1rem;
+    width: 90%;
+  }
+}
+
+.alert {
+  position: fixed; /* Posiciona de forma fija en la pantalla */
+  bottom: 1rem; /* A 1rem del borde inferior */
+  left: 50%; /* Centrado horizontalmente */
+  transform: translateX(-50%); /* Ajusta para centrar el elemento */
+  z-index: 9999; /* Asegura que quede por encima de otros elementos */
+
+  min-width: 200px; /* Tamaño mínimo, ajustable */
+  max-width: 80%; /* Para que no sobrepase la pantalla en móviles */
+
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+
+  /* rojo estilo “danger” */
+  color: #fff; /* texto blanco */
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif; /* Ajusta según tu fuente preferida */
+}
+
+.alert-danger { 
+  background-color: #f44336;
+}
+.alert-success {
+  background-color: #75b798;
+}
+
+.alert {
+  opacity: 1;
+  animation: fadeAlert 0.3s ease-in-out;
+}
+
+@keyframes fadeAlert {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
